@@ -11,23 +11,24 @@ interface CountdownProps {
     targetDate: string
 }
 
-const Countdown: StorefrontFunctionComponent<CountdownProps> = ({ targetDate = DEFAULT_TARGET_DATE }) => {
-
+const Countdown: StorefrontFunctionComponent<CountdownProps> = ({
+    targetDate = DEFAULT_TARGET_DATE,
+}) => {
     const [timeRemaining, setTime] = useState<TimeSplit>({
         hours: '00',
         minutes: '00',
-        seconds: '00'
-   })
+        seconds: '00',
+    })
 
     const handles = useCssHandles(CSS_HANDLES)
 
     tick(targetDate, setTime)
 
     return (
-        <div className={`${handles.countdown} c-muted-1 db tc`}>
-          <h1>{ `${timeRemaining.hours}:${timeRemaining.minutes}:${timeRemaining.seconds}` }</h1>
-      </div>
-  )
+        <div className={`${handles.countdown} db tc`}>
+            {`${timeRemaining.hours}:${timeRemaining.minutes}:${timeRemaining.seconds}`}
+        </div>
+    )
 }
 
 Countdown.schema = {
